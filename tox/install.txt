@@ -1,0 +1,73 @@
+#X86
+#sudo zypper in qt5-qtcore-devel qt5-qtgui-devel libsailfishapp-devel qt5-qtdeclarative-qtquick-devel
+#
+zypper in libogg-devel tar libtool
+zypper in nano
+curl -L http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.4.0.tar.bz2 > libvpx-1.4.0.tar.bz2
+tar -xf libvpx-1.4.0.tar.bz2
+cd libvpx-1.4.0
+./configure --prefix=/usr/share/harbour-tox --disable-examples --disable-docs --enable-vp9-highbitdepth --enable-vp9 --enable-vp9-postproc --enable-postproc --enable-error-concealment --enable-shared --disable-static --enable-pic --target=generic-gnu --enable-runtime-cpu-detect --enable-vp9-temporal-denoising --enable-multi-res-encoding
+make
+sudo make install
+make clean
+cd ..
+curl -L http://downloads.xiph.org/releases/opus/opus-1.1.tar.gz > opus-1.1.tar.gz
+tar -xf opus-1.1.tar.gz
+cd opus-1.1
+./configure --prefix=/usr/share/harbour-tox --disable-doc --disable-extra-programs --enable-rtcd --enable-float-approx --enable-static=no && make && sudo make install && make clean
+cd ..
+
+curl -L https://download.libsodium.org/libsodium/releases/libsodium-1.0.2.tar.gz > libsodium-1.0.2.tar.gz
+tar -xf libsodium-1.0.2.tar.gz
+cd libsodium-1.0.2
+./configure --prefix=/usr/share/harbour-tox && make && sudo make install && make clean
+cd ..
+
+git clone https://github.com/irungentoo/toxcore.git
+cd toxcore
+./autogen.sh
+./configure --prefix=/usr/share/harbour-tox --with-libsodium-headers=/usr/share/harbour-tox/include --with-libsodium-libs=/usr/share/harbour-tox/lib && make && sudo make install
+make clean
+cd ..
+
+
+----------------------------------------HISTORY------------------------------------
+1  zypper se sailfish
+2  sd
+3  zypper se vpx
+4  zypper se opus
+5  zypper se ogg
+6  zypper in libogg-devel
+7  ls
+8  pwd
+9  mkdir toxcode
+10  mv a* AUTHORS build config* C* d* INSTALL* lib* Makefile* NEWS other/R* rpmbuild s* testing tools toxav toxcore toxdns toxencryptsave tox.spec* toxcore/
+11  top
+12  sb2 -t SailfishOS-armv7hl -m sdk-install -R
+13  nano config.log
+14  pkg-config --existys opus
+15  pkg-config --exists opus
+16  pkg-config --exists --print-errors opus
+17  echo $PKG_CONFIG_PATH
+18  export PKG_CONFIG_PATH=/usr/share/harbour-tox/lib
+19  cd /usr/share/harbour-tox/
+20  find -iname opus.pc
+21  echo $PATH
+22  export PKG_CONFIG_PATH=/usr/share/harbour-tox/lib:/usr/share/harbour-tox/lib/pkgconfig
+23  cd
+24  cd toxcode/
+25  head config.log
+26  cd ../toxcore/
+27  head config.log
+28  ./configure --prefix=/usr/share/harbour-tox --with-libsodium-headers=/usr/share/harbour-tox/include --with-libsodium-libs=/usr/share/harbour-tox/lib
+29  make -j2
+30  make install
+31  df
+32  cd toxcore/
+33  ls -al
+34  sb2 -t SailfishOS-armv7hl -m sdk-install -R
+35  sync
+36  ls
+37  cd toxcode/
+38  ls
+39  history
