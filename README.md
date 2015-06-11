@@ -3,7 +3,7 @@ Tox client for Sailfish OS on Jolla phone
 
 This is now a first version of Tox (https://tox.im/) client for Sailfish OS, it may be able to send and receive text message. I did not test it for a long time on my Jolla and it may drain the battery... Current version must be launched from command line in a writable directory.
 
-Al others tox features are yet missing :
+All others tox features are yet missing :
  - File transfert & avatars
  - Video/Voice call
  - Chat room
