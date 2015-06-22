@@ -1,6 +1,7 @@
 #X86
 #sudo zypper in qt5-qtcore-devel qt5-qtgui-devel libsailfishapp-devel qt5-qtdeclarative-qtquick-devel
-#
+#sb2 -t SailfishOS-armv7hl -m sdk-install -R
+#http://www.redhat.com/archives/rpm-list/2003-December/msg00119.html
 zypper in libogg-devel tar libtool
 zypper in nano
 curl -L http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.4.0.tar.bz2 > libvpx-1.4.0.tar.bz2

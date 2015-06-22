@@ -1,3 +1,15 @@
+/*
+    Copyright (C) 2013 by emmanuelduv <emmanuelduviviers49@hotmail.com>
+    This file is part of harbour-tox Qt GUI.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the COPYING file for more details.
+*/
 #include "settings.h"
 
 Settings * Settings::instance;
@@ -7,7 +19,8 @@ Settings::Settings(QObject *parent) :
 {
     if(Settings::instance != NULL) delete Settings::instance;
     Settings::instance = this;
-    filePath = QStandardPaths::displayName(QStandardPaths::HomeLocation).append("/.tox/settings.ini");
+    filePath.append(getSettingsDirPath());
+    filePath.append("settings.ini");//QStandardPaths::displayName(QStandardPaths::HomeLocation)
     QFileInfo fi(filePath);
     if(!fi.exists() || !fi.isFile()){
 #ifdef DEBUG
@@ -125,6 +138,50 @@ Settings::Settings(QObject *parent) :
 Settings * Settings::getInstance(QObject *parent){
     if (Settings::instance == NULL) Settings::instance = new Settings(parent);
     return Settings::instance;
+}
+
+QString & Settings::getSettingsDirPath(){
+    bool ir;
+    if(avatar_path.isEmpty()){
+        avatar_path.append(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+        avatar_path.append("/.tox/");
+    }
+    QDir d(avatar_path);
+    if(!d.exists()){
+#ifdef DEBUG
+        qDebug() << "Creating " << d.absolutePath();
+#endif
+        ir = d.mkpath(d.absolutePath());
+#ifdef DEBUG
+        qDebug() << ir;
+#endif
+    }
+    return avatar_path;
+}
+
+QByteArray Settings::getAvatarHash(const QString& ownerId)
+{
+    QDir dir(getSettingsDirPath());
+    dir.mkdir("avatars/");
+    QFile file(dir.filePath("avatars/"+ownerId.left(64)+".png"));
+    if (!file.open(QIODevice::ReadOnly))
+        return QByteArray();
+
+    uint8_t hash[TOX_HASH_LENGTH];
+    QByteArray out = file.readAll();
+    tox_hash(hash, (uint8_t *) out.data(), out.length());
+    out.setRawData((char*)hash, TOX_HASH_LENGTH);
+    file.close();
+    return out;
+}
+
+void Settings::saveAvatar(QPixmap& pic, const QString& ownerId)
+{
+    QDir dir(getSettingsDirPath());
+    dir.mkdir("avatars/");
+    // ignore nospam (good idea, and also the addFriend funcs which call getAvatar don't have it)
+    QString filePath = dir.filePath("avatars/"+ownerId.left(64)+".png");
+    pic.save(filePath, "png");
 }
 
 QList<Settings::DhtServer>& Settings::getBootstrapServers(){

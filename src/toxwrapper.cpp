@@ -1,10 +1,17 @@
+/*
+    Copyright (C) 2013 by emmanuelduv <emmanuelduviviers49@hotmail.com>
+    This file is part of harbour-tox Qt GUI.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the COPYING file for more details.
+*/
 #include "toxwrapper.h"
 QHash<Tox*, toxWrapper*> toxWrapper::toxs;
-
-/*toxWrapper::toxWrapper(QObject *parent){
-    save_data = NULL;
-    init();
-}*/
 
 toxWrapper::toxWrapper(QObject *parent)
     : QThread(parent){
@@ -58,7 +65,7 @@ void toxWrapper::toxQuit(bool _quit, bool wait =true){
 
 bool toxWrapper::init(){
     bool ir = true, bootstrap_ok = false;
-    setSavePath(QStandardPaths::displayName(QStandardPaths::HomeLocation).append("/.tox/save"));
+    setSavePath(QStandardPaths::writableLocation(QStandardPaths::DataLocation).append("/.tox/save"));/*QStandardPaths::displayName(QStandardPaths::HomeLocation)*/
     QDir d(getSavePath());
     if(!d.exists()){
 #ifdef DEBUG
@@ -95,6 +102,7 @@ bool toxWrapper::init(){
     tox_callback_friend_name (my_tox, &nameChanged, this);
     tox_callback_friend_status (my_tox, &statusChanged, this);
     tox_callback_friend_typing(my_tox, &typingChanged, this);
+    tox_callback_file_recv_control(my_tox, &fileRecvControl, this);
 
     CUserId * i = NULL;
 #if DEBUG
@@ -163,6 +171,28 @@ void toxWrapper::updateMessages(){
 
 bool toxWrapper::load(){
     return load(getSavePath());
+}
+
+void toxWrapper::fileRecvControl(Tox *tox, uint32_t friend_number, uint32_t file_number, TOX_FILE_CONTROL control, void *user_data){
+
+}
+
+void toxWrapper::fileRecvControl(uint32_t friend_number, uint32_t file_number, TOX_FILE_CONTROL control, void *user_data){
+
+}
+
+QString & toxWrapper::getFriendName(uint32_t friendId){
+    ToxFriend* f = v_contacts[friendId];
+    if (f != 0){
+        return f->getName();
+    }
+}
+
+QString & toxWrapper::getFriendAddress(uint32_t friendId){
+    ToxFriend* f = v_contacts[friendId];
+    if (f != 0){
+        return f->toxId();
+    }
 }
 
 /*WARNING : load & save not thread safe (maybe others too)*/

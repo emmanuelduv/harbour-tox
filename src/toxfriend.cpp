@@ -1,3 +1,15 @@
+/*
+    Copyright (C) 2013 by emmanuelduv <emmanuelduviviers49@hotmail.com>
+    This file is part of harbour-tox Qt GUI.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the COPYING file for more details.
+*/
 #include "toxfriend.h"
 
 ToxFriend::ToxFriend(QObject *parent, int friend_number, Tox * tox) :
@@ -15,7 +27,7 @@ QString ToxFriend::getStatusMessage(){
     return status;
 }
 
-QString ToxFriend::getName(){
+QString & ToxFriend::getName(){
 #ifdef DEBUG
     qDebug() << "Returning " << name;
 #endif
@@ -29,10 +41,11 @@ TOX_USER_STATUS ToxFriend::getStatus(){
 }
 
 void ToxFriend::nameChanged(const uint8_t *newname, size_t length, void *userdata){
-    name = QString::fromUtf8((const char*)newname, length);
+    name.clear();
+    name.append(QString::fromUtf8((const char*)newname, length));
 }
-QString ToxFriend::toxId(){
-    return QString("TOXID()_TO_IMPLEMENT");
+QString & ToxFriend::toxId(){
+    return tox_id;
 }
 
 void ToxFriend::statusMessageChanged(const uint8_t *newstatus, uint16_t length, void *userdata){
@@ -121,6 +134,21 @@ bool ToxFriend::init(){
     bool r=true, _r;
     TOX_ERR_FRIEND_QUERY error;
     TOX_ERR_FRIEND_GET_LAST_ONLINE err;
+    TOX_ERR_FRIEND_GET_PUBLIC_KEY err_tox_id;
+    uint8_t clientId[TOX_PUBLIC_KEY_SIZE];
+    _r = tox_friend_get_public_key(my_tox, my_friend_number, clientId, &err_tox_id);
+    if(_r && err_tox_id == TOX_ERR_FRIEND_GET_PUBLIC_KEY_OK){
+        tox_id.clear();
+        tox_id.append(CUserId::toString(clientId));
+#ifdef DEBUG
+        qDebug() << "Initializing friend N° " << my_friend_number << " (" << tox_id << ")";
+#endif
+    }else{
+#ifdef DEBUG
+        qDebug() << "ToxId not found for friend N°" << my_friend_number;
+#endif
+    }
+
     uint8_t *message = 0;
     len = tox_friend_get_status_message_size (my_tox, my_friend_number, &error);
     if(error == TOX_ERR_FRIEND_QUERY_OK && len > 0){
@@ -151,7 +179,8 @@ bool ToxFriend::init(){
         }
         _r = tox_friend_get_name (my_tox, my_friend_number, message, &error);
         if(_r && error == TOX_ERR_FRIEND_QUERY_OK){
-            name = QString::fromUtf8((const char*)message, len_n);
+            name.clear();
+            name.append(QString::fromUtf8((const char*)message, len_n));
 #ifdef DEBUG
             qDebug() << "Name = " << name << ", Len_n = " << len_n;
 #endif

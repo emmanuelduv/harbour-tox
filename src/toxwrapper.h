@@ -1,3 +1,15 @@
+/*
+    Copyright (C) 2013 by emmanuelduv <emmanuelduviviers49@hotmail.com>
+    This file is part of harbour-tox Qt GUI.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the COPYING file for more details.
+*/
 #ifndef TOXWRAPPER_H
 #define TOXWRAPPER_H
 
@@ -17,6 +29,8 @@
 #include "cstring.h"
 #include "cdata.h"
 #include "settings.h"
+#include "toxfile.h"
+#include "corefile.h"
 
 #ifdef DEBUG
  #include <QtDebug>
@@ -30,6 +44,7 @@
 class toxWrapper : public QThread
 {
     Q_OBJECT
+    friend class CoreFile;
 private:
     Tox *my_tox;
     QList<ToxFriend*> contacts;
@@ -42,6 +57,7 @@ private:
     char * save_data;
     qint64 save_data_size;
     QString save_data_filename;
+    QString avatar_path, download_path;
     TOX_CONNECTION c;
     bool to_quit;
 
@@ -52,6 +68,8 @@ public:
     Q_INVOKABLE uint32_t addContact(const QString & address, const QString & message, bool send_message);
     Q_INVOKABLE bool setName(const QString& name);
     Q_INVOKABLE QString getAddress();
+    Q_INVOKABLE QString & getFriendAddress(uint32_t friendId);
+    Q_INVOKABLE QString & getFriendName(uint32_t friendId);
     Q_INVOKABLE int count();
     Q_INVOKABLE ToxFriend* getContact(int index);
     Q_INVOKABLE QList<ToxFriend *> & getContacts();
@@ -79,6 +97,8 @@ public:
     void typingChanged(int32_t friendnumber, bool is_typing, void *userdata);
     static void statusChanged(Tox *tox, uint32_t friendnumber, TOX_USER_STATUS status, void *userdata);
     void statusChanged(uint32_t friendnumber, TOX_USER_STATUS status, void *userdata);
+    static void fileRecvControl(Tox *tox, uint32_t friend_number, uint32_t file_number, TOX_FILE_CONTROL control, void *user_data);
+    void fileRecvControl(uint32_t friend_number, uint32_t file_number, TOX_FILE_CONTROL control, void *user_data);
     Q_INVOKABLE int removeContact(int friendNumber);
     Q_INVOKABLE bool typingTo(uint32_t friend_number, bool typing);
     Q_INVOKABLE bool sendMessage(uint32_t friend_number, const QString & message);
@@ -100,6 +120,21 @@ public:
 signals:
     Q_INVOKABLE void friendMessageReceived(QVariant friendnumber, QVariant message, QVariant type);
     Q_INVOKABLE void messagesToUpdate();
+
+    Q_INVOKABLE void fileSendStarted(ToxFile file);
+    Q_INVOKABLE void fileReceiveRequested(ToxFile file);
+    Q_INVOKABLE void fileTransferAccepted(ToxFile file);
+    Q_INVOKABLE void fileTransferCancelled(ToxFile file);
+    Q_INVOKABLE void fileTransferFinished(ToxFile file);
+    Q_INVOKABLE void fileUploadFinished(const QString& path);
+    Q_INVOKABLE void fileDownloadFinished(const QString& path);
+    Q_INVOKABLE void fileTransferPaused(ToxFile file);
+    Q_INVOKABLE void fileTransferInfo(ToxFile file);
+    Q_INVOKABLE void fileTransferRemotePausedUnpaused(ToxFile file, bool paused);
+    Q_INVOKABLE void fileTransferBrokenUnbroken(ToxFile file, bool broken);
+    Q_INVOKABLE void fileSendFailed(uint32_t friendId, const QString& fname);
+    Q_INVOKABLE void friendAvatarChanged(uint32_t friendId, const QPixmap& pic);
+    Q_INVOKABLE void friendAvatarRemoved(uint32_t friendId);
 
 public slots:
     void quitter();

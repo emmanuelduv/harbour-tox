@@ -93,32 +93,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="114"/>
+        <location filename="../qml/pages/FirstPage.qml" line="83"/>
+        <source>Video test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FirstPage.qml" line="121"/>
         <source>Tox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="160"/>
+        <location filename="../qml/pages/FirstPage.qml" line="167"/>
         <source>Send message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="170"/>
+        <location filename="../qml/pages/FirstPage.qml" line="177"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="173"/>
+        <location filename="../qml/pages/FirstPage.qml" line="180"/>
         <source>Deleting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="179"/>
+        <location filename="../qml/pages/FirstPage.qml" line="186"/>
         <source>Copy to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FirstPage.qml" line="202"/>
+        <location filename="../qml/pages/FirstPage.qml" line="209"/>
         <source>No contacts</source>
         <translation type="unfinished"></translation>
     </message>

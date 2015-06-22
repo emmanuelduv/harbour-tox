@@ -79,6 +79,13 @@ Page {
                     console.log("ContactAdd.qml");
                 }
             }
+            MenuItem{
+                text: qsTr("Video test")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("VideoTest.qml"));
+                    console.log("VideoTest.qml")
+                }
+            }
         }
 
         model: ListModel{

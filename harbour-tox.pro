@@ -19,7 +19,9 @@ SOURCES += src/qTest.cpp \
     src/toxfriend.cpp \
     src/cstring.cpp \
     src/cdata.cpp \
-    src/settings.cpp
+    src/settings.cpp \
+    src/corefile.cpp \
+    src/toxfile.cpp
 
 OTHER_FILES += qml/qTest.qml \
     qml/cover/CoverPage.qml \
@@ -36,7 +38,8 @@ OTHER_FILES += qml/qTest.qml \
     harbour-tox.desktop \
     rpm/harbour-tox.spec \
     rpm/harbour-tox.yaml \
-    res/settings.ini
+    res/settings.ini \
+    qml/pages/VideoTest.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -49,7 +52,9 @@ HEADERS += \
     src/toxfriend.h \
     src/cstring.h \
     src/cdata.h \
-    src/settings.h
+    src/settings.h \
+    src/corefile.h \
+    src/toxfile.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../usr/share/harbour-tox/lib/release/ -ltoxcore
