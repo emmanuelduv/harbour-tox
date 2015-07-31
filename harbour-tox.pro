@@ -11,7 +11,7 @@
 
 # The name of your application
 TARGET = harbour-tox
-
+QT += multimedia
 CONFIG += sailfishapp
 
 SOURCES += src/qTest.cpp \
@@ -21,7 +21,8 @@ SOURCES += src/qTest.cpp \
     src/cdata.cpp \
     src/settings.cpp \
     src/corefile.cpp \
-    src/toxfile.cpp
+    src/toxfile.cpp \
+    src/multimedia/videoprobe.cpp
 
 OTHER_FILES += qml/qTest.qml \
     qml/cover/CoverPage.qml \
@@ -54,7 +55,8 @@ HEADERS += \
     src/cdata.h \
     src/settings.h \
     src/corefile.h \
-    src/toxfile.h
+    src/toxfile.h \
+    src/multimedia/videoprobe.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../usr/share/harbour-tox/lib/release/ -ltoxcore

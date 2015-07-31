@@ -6,6 +6,8 @@
 Name:       harbour-tox
 
 # >> macros
+%define __provides_exclude_from ^%{_datadir}/.*$
+%define __requires_exclude ^libopus|libsodium|libtoxav|libtoxcore|libtoxdns|libtoxencryptsave|libvpx.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
@@ -16,8 +18,8 @@ Summary:    qTox
 Version:    0.1
 Release:    1
 Group:      Qt/Qt
-License:    LICENSE
-URL:        http://example.org/
+License:    GPLv3
+URL:        https://github.com/emmanuelduv/harbour-tox
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  qTest.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
@@ -61,6 +63,7 @@ desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
 cp -a /usr/share/harbour-tox/lib %{buildroot}%{_datadir}/%{name}/
+strip %{buildroot}%{_datadir}/%{name}/lib/libvpx.so.2.0.0
 rm -f %{buildroot}%{_datadir}/%{name}/lib/*.a
 rm -f %{buildroot}%{_datadir}/%{name}/lib/*.la
 rm -rf %{buildroot}%{_datadir}/%{name}/lib/pkgconfig

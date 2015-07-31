@@ -24,6 +24,7 @@
 #include <QDateTime>
 #include <QStandardPaths>
 #include <QDir>
+#include <QVideoFrame>
 #define DEBUG 1
 #include "toxfriend.h"
 #include "cstring.h"
@@ -31,6 +32,7 @@
 #include "settings.h"
 #include "toxfile.h"
 #include "corefile.h"
+#include "multimedia/videoprobe.h"
 
 #ifdef DEBUG
  #include <QtDebug>
@@ -140,6 +142,8 @@ public slots:
     void quitter();
     void updateMessages();
     void friendMessageProcess(QVariant friendNumber, QVariant message, QVariant type);
+    void frameProbed(const QVideoFrame & frame);
+
 };
 
 #endif // TOXWRAPPER_H

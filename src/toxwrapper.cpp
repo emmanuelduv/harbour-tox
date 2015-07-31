@@ -105,7 +105,7 @@ bool toxWrapper::init(){
     tox_callback_file_recv_control(my_tox, &fileRecvControl, this);
 
     CUserId * i = NULL;
-#if DEBUG
+#ifdef DEBUG
     qDebug() << "TOX_PUBLIC_KEY_SIZE : " << TOX_PUBLIC_KEY_SIZE;
 #endif
     uint8_t * uid = new uint8_t[TOX_PUBLIC_KEY_SIZE];
@@ -153,6 +153,7 @@ bool toxWrapper::init(){
     //connect(parent, SIGNAL(aboutToQuit()), tox, SLOT(quitter()));
     connect(this, SIGNAL(finished()), this, SLOT(quit()));
     connect(this, SIGNAL(friendMessageReceived(QVariant, QVariant, QVariant)), this, SLOT(friendMessageProcess(QVariant, QVariant, QVariant)), Qt::QueuedConnection);
+    connect(VideoProbe::getInstance(this), SIGNAL(videoFrameProbed(const QVideoFrame&)), this, SLOT(frameProbed(const QVideoFrame&)));
     return ir;
 }
 void toxWrapper::friendMessageProcess(QVariant friendNumber, QVariant message, QVariant type){
@@ -161,6 +162,14 @@ void toxWrapper::friendMessageProcess(QVariant friendNumber, QVariant message, Q
     qDebug() << message;
 #endif
     emit messagesToUpdate();
+}
+
+void toxWrapper::frameProbed(const QVideoFrame &frame){
+#ifdef DEBUG
+    qDebug() << "Frame probed! " << frame.width() << " x " << frame.height();
+    qDebug() << "FieldType = " << frame.fieldType();
+    qDebug() << "PixelFormat = " << frame.pixelFormat();
+#endif
 }
 
 void toxWrapper::updateMessages(){
