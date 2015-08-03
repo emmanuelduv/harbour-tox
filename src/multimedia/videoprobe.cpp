@@ -1,4 +1,5 @@
 //http://www.qtcentre.org/threads/57981-Using-QVideoProbe-from-QML
+//http://www.omg-it.works/how-to-grab-video-frames-directly-from-qcamera/ ??
 #include "videoprobe.h"
 VideoProbe * VideoProbe::instance;
 
