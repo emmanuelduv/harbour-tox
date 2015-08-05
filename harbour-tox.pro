@@ -40,7 +40,8 @@ OTHER_FILES += qml/qTest.qml \
     rpm/harbour-tox.spec \
     rpm/harbour-tox.yaml \
     res/settings.ini \
-    qml/pages/VideoTest.qml
+    qml/pages/VideoTest.qml \
+    qml/pages/VideoRecord.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

@@ -1,3 +1,4 @@
+//https://github.com/Acce0ss/advcompogallery-sailfish/blob/master/qml/pages/VideoCameraPage.qml
 import QtQuick 2.0
 import QtMultimedia 5.0
 
@@ -160,14 +161,14 @@ Page {
       }
       BusyIndicator {
         anchors.horizontalCenter: parent.horizontalCenter
-        size: BusyIndicatorSizeSmall
+        size: BusyIndicatorSize.Small
         running: !camera.imageCapture.ready
       }
 
       Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width - 4*Theme.paddingLarge
-        height: 500
+        height: 480
         color: "transparent"
         border.width: 5
         border.color: switch(camera.lockStatus)
