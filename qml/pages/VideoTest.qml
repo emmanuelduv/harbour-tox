@@ -24,7 +24,7 @@ Page {
                  : Camera.UnloadedState
 
     focus {
-      focusMode: Camera.FosContinuous
+      focusMode: Camera.FocusContinuous
       //focusPointMode: Camera.FocusPointCustom
       //customFocusPoint: Qt.point(0.2, 0.2) // Focus relative to top-left corner
     }
@@ -160,7 +160,7 @@ Page {
       }
       BusyIndicator {
         anchors.horizontalCenter: parent.horizontalCenter
-        size: BusyIndicatorSizSmall
+        size: BusyIndicatorSizeSmall
         running: !camera.imageCapture.ready
       }
 
