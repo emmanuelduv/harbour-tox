@@ -19,6 +19,10 @@ bool VideoProbe::setSource(QObject* sourceObj)
 #endif
     ma_source = player;
     ret = QVideoProbe::setSource(player);
+#ifdef DEBUG
+    if(ret == false) qDebug() << "QVideoProbe::setSource -> FALSE";
+    else qDebug() << "QVideoProbe::setSource -> TRUE";
+#endif
     return ret;
 }
 

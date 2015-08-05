@@ -221,4 +221,73 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>VideoTest</name>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="70"/>
+        <source>Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="74"/>
+        <source>Controls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="83"/>
+        <source>Image save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="90"/>
+        <source>Camera active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="107"/>
+        <source>picture orientation portrait</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="114"/>
+        <source>Used camera:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="117"/>
+        <source>Primary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="121"/>
+        <source>Secondary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="146"/>
+        <source>Capture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="159"/>
+        <source>Indicators</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="210"/>
+        <source>Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="210"/>
+        <location filename="../qml/pages/VideoTest.qml" line="217"/>
+        <source>No errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VideoTest.qml" line="216"/>
+        <source>Capture error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

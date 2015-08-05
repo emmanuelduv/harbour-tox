@@ -204,4 +204,59 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>VideoTest</name>
+    <message>
+        <source>Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Controls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Camera active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>picture orientation portrait</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used camera:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Primary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Secondary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Capture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indicators</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Capture error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
