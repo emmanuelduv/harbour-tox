@@ -80,10 +80,17 @@ Page {
                 }
             }
             MenuItem{
-                text: qsTr("Video test")
+                text: qsTr("Camera test")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("VideoTest.qml"));
                     console.log("VideoTest.qml")
+                }
+            }
+            MenuItem{
+                text: qsTr("Video test")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("VideoRecord.qml"));
+                    console.log("VideoRecord.qml")
                 }
             }
         }
