@@ -3,7 +3,7 @@ import QtMultimedia 5.0
 
 import Sailfish.Silica 1.0
 
-/*import com.jolla.camera 1.0*/
+import harbour.tox 1.0
 
 Page {
   id: root
@@ -273,5 +273,9 @@ Page {
     if (camera.cameraState != Camera.UnloadedState) {
       camera.cameraState = Camera.UnloadedState
     }
+  }
+  Component.onCompleted: {
+    //_complete = true;
+    VideoProbe.setSource(camera);
   }
 }
