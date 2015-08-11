@@ -154,7 +154,7 @@ bool toxWrapper::init(){
     //connect(parent, SIGNAL(aboutToQuit()), tox, SLOT(quitter()));
     connect(this, SIGNAL(finished()), this, SLOT(quit()));
     connect(this, SIGNAL(friendMessageReceived(QVariant, QVariant, QVariant)), this, SLOT(friendMessageProcess(QVariant, QVariant, QVariant)), Qt::QueuedConnection);
-    connect(VideoProbe::getInstance(this), SIGNAL(videoFrameProbed(const QVideoFrame&)), this, SLOT(frameProbed(const QVideoFrame&)));
+    connect(video_probe, SIGNAL(videoFrameProbed(const QVideoFrame&)), this, SLOT(frameProbed(const QVideoFrame&)));
     return ir;
 }
 void toxWrapper::friendMessageProcess(QVariant friendNumber, QVariant message, QVariant type){
