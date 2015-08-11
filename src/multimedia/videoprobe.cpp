@@ -27,7 +27,17 @@ bool VideoProbe::setSource(QObject* sourceObj)
 }
 
 VideoProbe * VideoProbe::getInstance(QObject * parent){
-    if(VideoProbe::instance == NULL) VideoProbe::instance = new VideoProbe(parent);
+    if(VideoProbe::instance == NULL){
+#ifdef DEBUG
+        qDebug() << "Creating new instance, parent = "<< parent;
+#endif
+        VideoProbe::instance = new VideoProbe(parent);
+    }
+#ifdef DEBUG
+    else{
+        qDebug() << "Returning already created instance!";
+    }
+#endif
     return VideoProbe::instance;
 }
 
