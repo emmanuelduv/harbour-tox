@@ -18,6 +18,7 @@ toxWrapper::toxWrapper(QObject *parent)
     bool ir = false;
     save_data = NULL;
     my_tox = NULL;
+    video_probe = VideoProbe::getInstance(this);
 #ifdef DEBUG
     qDebug() << "chargé?";
 #endif
