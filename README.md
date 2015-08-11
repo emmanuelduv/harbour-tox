@@ -1,7 +1,7 @@
 # harbour-tox
 Tox client for Sailfish OS on Jolla phone
 
-This is now a first version of Tox (https://tox.chat/) client for Sailfish OS, it may be able to send and receive text message. I did not test it for a long time on my Jolla and it may drain the battery... Current version must be launched from command line in a writable directory.
+This is now a first version of Tox (https://tox.chat/) client for Sailfish OS, it may be able to send and receive text message. I did not test it for a long time on my Jolla and it may drain the battery...
 
 All others tox features are yet missing :
  - File transfert & avatars
