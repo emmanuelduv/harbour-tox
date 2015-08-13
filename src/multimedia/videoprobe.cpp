@@ -10,7 +10,7 @@ VideoProbe::VideoProbe(QObject *parent) :
     else throw QString("VideoProbe must be instanciated one time!");
 }
 
-bool VideoProbe::setSource(QObject* sourceObj)
+void VideoProbe::setSource(QObject* sourceObj)
 {
     bool ret =false;
     QMediaPlayer *player = qvariant_cast<QMediaPlayer*>(sourceObj->property("mediaObject"));
@@ -23,7 +23,7 @@ bool VideoProbe::setSource(QObject* sourceObj)
     if(ret == false) qDebug() << "QVideoProbe::setSource -> FALSE";
     else qDebug() << "QVideoProbe::setSource -> TRUE";
 #endif
-    return ret;
+    //return ret;
 }
 
 VideoProbe * VideoProbe::getInstance(QObject * parent){

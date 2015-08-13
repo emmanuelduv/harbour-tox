@@ -22,8 +22,22 @@ QAbstractVideoSurface * ToxVideoSurface::getPresentationSurface(){
     return presentation_surface;
 }
 
-void ToxVideoSurface::setSource(QObject * src){
-
+void ToxVideoSurface::setSource(QObject * sourceObj){
+    bool ret =false;
+    QMediaPlayer *player = qvariant_cast<QMediaPlayer*>(sourceObj->property("mediaObject"));
+#ifdef DEBUG
+    qDebug() << "ToxVideoSurface::setSource() player"<< player;
+#endif
+    ma_source = player;
+    if(ma_source) ret = true;
+#ifdef DEBUG
+    if(ret == false) qDebug() << "ToxVideoSurface::setSource -> FALSE";
+    else qDebug() << "ToxVideoSurface::setSource -> TRUE";
+#endif
+    //return ret;
+}
+QObject * ToxVideoSurface::getSource(){
+    return ma_source;
 }
 
 bool ToxVideoSurface::present(const QVideoFrame& frame){

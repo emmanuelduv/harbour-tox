@@ -17,7 +17,7 @@ public:
 signals:
 
 public slots:
-    bool setSource(QObject* sourceObj);
+    void setSource(QObject* sourceObj);
     QObject * getSource();
 
 private:
