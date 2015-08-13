@@ -22,7 +22,8 @@ SOURCES += src/qTest.cpp \
     src/settings.cpp \
     src/corefile.cpp \
     src/toxfile.cpp \
-    src/multimedia/videoprobe.cpp
+    src/multimedia/videoprobe.cpp \
+    src/multimedia/toxvideosurface.cpp
 
 OTHER_FILES += qml/qTest.qml \
     qml/cover/CoverPage.qml \
@@ -57,7 +58,8 @@ HEADERS += \
     src/settings.h \
     src/corefile.h \
     src/toxfile.h \
-    src/multimedia/videoprobe.h
+    src/multimedia/videoprobe.h \
+    src/multimedia/toxvideosurface.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../usr/share/harbour-tox/lib/release/ -ltoxcore
