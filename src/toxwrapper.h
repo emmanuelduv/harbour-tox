@@ -62,6 +62,7 @@ private:
     QString avatar_path, download_path;
     TOX_CONNECTION c;
     bool to_quit;
+    VideoProbe * video_probe;
 
 public:
     explicit toxWrapper(QObject *parent=NULL);
