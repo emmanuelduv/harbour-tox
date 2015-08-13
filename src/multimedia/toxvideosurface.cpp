@@ -15,6 +15,17 @@ QList<QVideoFrame::PixelFormat> ToxVideoSurface::supportedPixelFormats(QAbstract
     return l;
 }
 
+void ToxVideoSurface::setPresentationSurface(QAbstractVideoSurface * s){
+    presentation_surface = s;
+}
+QAbstractVideoSurface * ToxVideoSurface::getPresentationSurface(){
+    return presentation_surface;
+}
+
+void ToxVideoSurface::setSource(QObject * src){
+
+}
+
 bool ToxVideoSurface::present(const QVideoFrame& frame){
 #ifdef DEBUG
     qDebug() << "Frame probed! " << frame.width() << " x " << frame.height();

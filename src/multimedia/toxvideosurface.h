@@ -13,10 +13,12 @@ public:
     bool present(const QVideoFrame &frame);
     QAbstractVideoSurface * getPresentationSurface();
     void setPresentationSurface(QAbstractVideoSurface * s);
+    void setSource(QObject * src);
 signals:
 
 public slots:
-
+private:
+    QAbstractVideoSurface * presentation_surface;
 };
 
 #endif // TOXVIDEOSURFACE_H
