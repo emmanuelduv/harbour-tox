@@ -5,7 +5,7 @@
 #include <QFile>
 #include "stdint.h"
 #include "tox/tox.h"
-
+#include "config.h"
 
 struct ToxFile
 {

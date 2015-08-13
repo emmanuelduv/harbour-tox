@@ -185,6 +185,11 @@ Page {
           ColorAnimation { to: border.color; duration: 200 }
         }
 
+        ToxVideoSurface{
+            id: tox_video_surface_in
+            source: camera;
+        }
+
         VideoOutput {
           id: output
 
@@ -192,7 +197,7 @@ Page {
 
           visible: camera.cameraState == Camera.ActiveState
           focus: visible
-          source: camera
+          source: tox_video_surface_in //camera
           fillMode: VideoOutput.PreserveAspectCrop
 
           MouseArea {

@@ -1,6 +1,6 @@
 #ifndef TOXVIDEOSURFACE_H
 #define TOXVIDEOSURFACE_H
-
+#include "../config.h"
 #include <QAbstractVideoSurface>
 #include <QList>
 #include <QMediaPlayer>
@@ -24,6 +24,8 @@ public slots:
 private:
     QAbstractVideoSurface * presentation_surface;
     QMediaPlayer * ma_source;
+    int nb_frames;
+    static QList<QVideoFrame::PixelFormat> l;
 };
 
 #endif // TOXVIDEOSURFACE_H

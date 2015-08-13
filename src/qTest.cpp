@@ -23,6 +23,7 @@
 #include "toxwrapper.h"
 #include "settings.h"
 #include "multimedia/videoprobe.h"
+#include "multimedia/toxvideosurface.h"
 
 QObject* videoprobe_singleton_provider(QQmlEngine *engine, QJSEngine *scriptEngine){
     Q_UNUSED(engine);
@@ -42,6 +43,7 @@ int main(int argc, char *argv[])
     // To display the view, call "show()" (will show fullscreen on device).
     qmlRegisterType<toxWrapper> ("harbour.tox", 1, 0, "ToxWrapper");
     qmlRegisterType<ToxFriend> ("harbour.tox", 1, 0, "ToxFriend");
+    qmlRegisterType<ToxVideoSurface> ("harbour.tox", 1, 0, "ToxVideoSurface");
     qmlRegisterSingletonType<VideoProbe>("harbour.tox", 1, 0, "VideoProbe", videoprobe_singleton_provider);
     QGuiApplication * s_app = SailfishApp::application(argc, argv);
     s_app->setOrganizationName("harbour-tox");

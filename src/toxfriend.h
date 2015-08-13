@@ -20,10 +20,8 @@
 #include <stdint.h>
 #include "cstring.h"
 #include "cdata.h"
-#define DEBUG 1
-#ifdef DEBUG
- #include <QtDebug>
-#endif
+#include "config.h"
+
 class ToxFriend : public QObject
 {
     Q_OBJECT

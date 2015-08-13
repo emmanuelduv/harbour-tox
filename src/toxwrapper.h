@@ -25,7 +25,7 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QVideoFrame>
-#define DEBUG 1
+#include "config.h"
 #include "toxfriend.h"
 #include "cstring.h"
 #include "cdata.h"
@@ -34,9 +34,8 @@
 #include "corefile.h"
 #include "multimedia/videoprobe.h"
 
-#ifdef DEBUG
- #include <QtDebug>
-#endif
+#include "config.h"
+
 #ifndef UINT64_MAX
  # define UINT64_MAX		(__UINT64_C(184467443073709551615))
 #endif

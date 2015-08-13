@@ -23,12 +23,7 @@
 #include <QDir>
 #include <QPixmap>
 #include <tox/tox.h>
-#ifndef DEBUG
- #define DEBUG
-#endif
-#ifdef DEBUG
- #include <QDebug>
-#endif
+#include "config.h"
 
 class Settings : public QObject
 {

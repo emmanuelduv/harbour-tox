@@ -1,6 +1,6 @@
 #ifndef VIDEOPROBE_H
 #define VIDEOPROBE_H
-#define DEBUG
+#include "../config.h"
 #include <QVideoProbe>
 #include <QDebug>
 #include <QMediaPlayer>

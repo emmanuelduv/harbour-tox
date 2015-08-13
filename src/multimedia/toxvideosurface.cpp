@@ -1,17 +1,22 @@
 #include "toxvideosurface.h"
+QList<QVideoFrame::PixelFormat> ToxVideoSurface::l;
 
 ToxVideoSurface::ToxVideoSurface(QObject *parent) :
-    QAbstractVideoSurface(parent)
+    QAbstractVideoSurface(parent),presentation_surface(NULL)
 {
 #ifdef DEBUG
-    qDebug() << "Créating ToxVideoSurface, parent = " << parent;
+    qDebug() << "Creating ToxVideoSurface, parent = " << parent;
 #endif
+    if(l.empty()){
+        l<< QVideoFrame::Format_RGB24 << QVideoFrame::Format_AYUV444 << QVideoFrame::Format_CameraRaw << QVideoFrame::Format_YUV444;
+        l << QVideoFrame::Format_Jpeg << QVideoFrame::Format_YV12 << QVideoFrame::Format_Y16;
+    }
 }
 
 QList<QVideoFrame::PixelFormat> ToxVideoSurface::supportedPixelFormats(QAbstractVideoBuffer::HandleType handleType) const{
-    QList<QVideoFrame::PixelFormat> l;
-    l<< QVideoFrame::Format_RGB24 << QVideoFrame::Format_AYUV444 << QVideoFrame::Format_CameraRaw << QVideoFrame::Format_YUV444;
-    l << QVideoFrame::Format_Jpeg << QVideoFrame::Format_YV12 << QVideoFrame::Format_Y16;
+#ifdef DEBUG
+    qDebug() << "ToxVideoSurface::supportedPixelFormats() -> "<< l;
+#endif
     return l;
 }
 
@@ -42,9 +47,25 @@ QObject * ToxVideoSurface::getSource(){
 
 bool ToxVideoSurface::present(const QVideoFrame& frame){
 #ifdef DEBUG
-    qDebug() << "Frame probed! " << frame.width() << " x " << frame.height();
-    qDebug() << "FieldType = " << frame.fieldType();
-    qDebug() << "PixelFormat = " << frame.pixelFormat();
+    if(nb_frames % 10 ==  0){
+        qDebug() << "Frame " << nb_frames << " presented! " << frame.width() << " x " << frame.height();
+        qDebug() << "FieldType = " << frame.fieldType();
+        qDebug() << "PixelFormat = " << frame.pixelFormat();
+    }
+    nb_frames++;
 #endif
-    return true;
+    bool ret = true;
+    if(presentation_surface != NULL){
+        ret = presentation_surface->present(frame);
+#ifdef DEBUG
+        qDebug() << "Frame presented to " << presentation_surface;
+#endif
+    }
+#ifdef DEBUG
+    else{
+        qDebug() << "Frame not presented to " << presentation_surface;
+    }
+#endif
+
+    return ret;
 }

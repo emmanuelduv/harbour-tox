@@ -59,7 +59,8 @@ HEADERS += \
     src/corefile.h \
     src/toxfile.h \
     src/multimedia/videoprobe.h \
-    src/multimedia/toxvideosurface.h
+    src/multimedia/toxvideosurface.h \
+    src/config.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../usr/share/harbour-tox/lib/release/ -ltoxcore

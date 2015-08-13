@@ -338,18 +338,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/VideoTest.qml" line="211"/>
+        <location filename="../qml/pages/VideoTest.qml" line="216"/>
         <source>Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/VideoTest.qml" line="211"/>
-        <location filename="../qml/pages/VideoTest.qml" line="218"/>
+        <location filename="../qml/pages/VideoTest.qml" line="216"/>
+        <location filename="../qml/pages/VideoTest.qml" line="223"/>
         <source>No errors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/VideoTest.qml" line="217"/>
+        <location filename="../qml/pages/VideoTest.qml" line="222"/>
         <source>Capture error: %1</source>
         <translation type="unfinished"></translation>
     </message>
